@@ -35,21 +35,6 @@ static int vmode[3] = { 0, 0, 16 };
 /* keymap - mappings of the form { scancode, localcode } - from sdl/keymap.c */
 extern int keymap[][2];
 
-static int mapscancode()
-{
-}
-
-
-static void joy_init()
-{
-	
-}
-
-static void overlay_init()
-{
-	
-}
-
 void vid_init()
 {
 
@@ -95,21 +80,64 @@ void vid_init()
 }
 
 
+/* TODO: Really need to clean this up - this will break if you rebind the keys.*/
 void ev_poll()
 {
-		event_t ev;
-		SDL_Event event;
+	event_t ev;
+	SDL_Event event;
 
-		while (SDL_PollEvent(&event)){
+	while (SDL_PollEvent(&event)){
 
-			const uint8_t *sdl_keys = SDL_GetKeyboardState(NULL);
-
-    		if (event.type == SDL_QUIT){
-        		exit(1);
-    		}
-
-       }
+    	if (event.type == SDL_QUIT){
+        	exit(1);
+    	}
     
+
+	if(event.type == SDL_KEYDOWN){
+
+        uint32_t key = event.key.keysym.scancode;
+
+        switch(key)
+        {
+            /*case SDL_SCANCODE_RALT:
+			case SDL_SCANCODE_LALT: ev.type = EV_PRESS; ev.code = K_ALT; ev_postevent(&ev); break; 
+            
+            
+            
+            
+			case SDL_SCANCODE_SPACE: ev.type = EV_PRESS; ev.code = K_SPACE; ev_postevent(&ev); break;  */
+            case SDL_SCANCODE_RETURN: ev.type = EV_PRESS; ev.code = K_ENTER; ev_postevent(&ev); break;  
+			case SDL_SCANCODE_A: ev.type = EV_PRESS; ev.code = K_LEFT; ev_postevent(&ev); break; 
+			case SDL_SCANCODE_D: ev.type = EV_PRESS; ev.code = K_RIGHT; ev_postevent(&ev); break; 
+			case SDL_SCANCODE_S: ev.type = EV_PRESS; ev.code = K_DOWN; ev_postevent(&ev); break; 
+			case SDL_SCANCODE_W: ev.type = EV_PRESS; ev.code = K_UP; ev_postevent(&ev); break; 
+			case SDL_SCANCODE_Q: ev.type = EV_PRESS; ev.code = K_ALT; ev_postevent(&ev); break;
+			case SDL_SCANCODE_E: ev.type = EV_PRESS; ev.code = K_CTRL; ev_postevent(&ev); break;  
+        }
+
+    } else if (event.type == SDL_KEYUP){
+        
+        uint32_t key = event.key.keysym.scancode;
+        
+        switch(key)
+        {
+            /*case SDL_SCANCODE_RALT:
+			case SDL_SCANCODE_LALT: ev.type = EV_RELEASE; ev.code = K_ALT; ev_postevent(&ev); break; 
+            
+            case SDL_SCANCODE_A: ev.type = EV_RELEASE; ev.code = K_JOYLEFT; ev_postevent(&ev); break; 
+            case SDL_SCANCODE_S: ev.type = EV_RELEASE; ev.code = K_JOYDOWN; ev_postevent(&ev); break; 
+            
+			case SDL_SCANCODE_SPACE: ev.type = EV_RELEASE; ev.code = K_SPACE; ev_postevent(&ev); break; */
+            case SDL_SCANCODE_RETURN: ev.type = EV_RELEASE; ev.code = K_ENTER; ev_postevent(&ev); break; 
+			case SDL_SCANCODE_A: ev.type = EV_RELEASE; ev.code = K_LEFT; ev_postevent(&ev); break; 
+			case SDL_SCANCODE_D: ev.type = EV_RELEASE; ev.code = K_RIGHT; ev_postevent(&ev); break;
+			case SDL_SCANCODE_S: ev.type = EV_RELEASE; ev.code = K_DOWN; ev_postevent(&ev); break;
+			case SDL_SCANCODE_W: ev.type = EV_RELEASE; ev.code = K_UP; ev_postevent(&ev); break;   
+			case SDL_SCANCODE_Q: ev.type = EV_RELEASE; ev.code = K_ALT; ev_postevent(&ev); break; 
+			case SDL_SCANCODE_E: ev.type = EV_RELEASE; ev.code = K_CTRL; ev_postevent(&ev); break;
+        }
+    }
+}
 		
 }
 
