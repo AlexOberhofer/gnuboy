@@ -1,8 +1,9 @@
 /*
  * sdl.c
- * sdl interfaces -- based on svga.c 
+ * sdl 2 interfaces -- based on sdl.c 
  *
  * (C) 2001 Damian Gryski <dgryski@uwaterloo.ca>
+ * (C) 2020 Alex Oberhofer <alexmoberhofer@gmail.com>
  * Joystick code contributed by David Lau
  *
  * Licensed under the GPLv2, or later.
@@ -36,7 +37,6 @@ extern int keymap[][2];
 
 static int mapscancode()
 {
-	return 0;
 }
 
 
@@ -97,7 +97,20 @@ void vid_init()
 
 void ev_poll()
 {
-	
+		event_t ev;
+		SDL_Event event;
+
+		while (SDL_PollEvent(&event)){
+
+			const uint8_t *sdl_keys = SDL_GetKeyboardState(NULL);
+
+    		if (event.type == SDL_QUIT){
+        		exit(1);
+    		}
+
+       }
+    
+		
 }
 
 void vid_setpal(int i, int r, int g, int b)

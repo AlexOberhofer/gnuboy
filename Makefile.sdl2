@@ -20,7 +20,7 @@ SYS_DEFS = -DHAVE_CONFIG_H -DIS_LITTLE_ENDIAN  -DIS_LINUX
 SYS_OBJS = sys/nix/nix.o $(ASM_OBJS)
 SYS_INCS = -I/usr/local/include  -I./sys/nix
 
-SDL_OBJS = sys/sdl2/sdl.o sys/dummy/nosound.o 
+SDL_OBJS = sys/sdl2/sdl.o sys/dummy/nosound.o  sys/sdl2/keymap.o
 SDL_LIBS = -L/usr/lib -lSDL2 -lpthread
 SDL_CFLAGS = -I/usr/include/SDL2 -D_GNU_SOURCE=1 -D_REENTRANT
 
