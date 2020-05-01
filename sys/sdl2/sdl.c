@@ -14,7 +14,6 @@
 
 #include <SDL2/SDL.h>
 
-
 #include "fb.h"
 #include "input.h"
 #include "rc.h"
@@ -30,8 +29,6 @@ struct fb fb;
 
 static int vmode[3] = { 0, 0, 16 };
 
-
-
 /* keymap - mappings of the form { scancode, localcode } - from sdl/keymap.c */
 extern int keymap[][2];
 
@@ -40,8 +37,8 @@ void vid_init()
 
 	if (!vmode[0] || !vmode[1])
 	{
-		vmode[0] = 160 * 1;
-		vmode[1] = 144 * 1;
+		vmode[0] = 160 * 2;
+		vmode[1] = 144 * 2;
 	}
 
 
@@ -53,7 +50,6 @@ void vid_init()
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
         SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
         texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGB24, SDL_TEXTUREACCESS_STREAMING, vmode[0], vmode[1]);
-		/*surface = SDL_CreateRGBSurface(0, vmode[0], vmode[1], vmode[2], 0, 0, 0, 0);*/
 		surface = SDL_GetWindowSurface(window);
     }
 
@@ -99,20 +95,13 @@ void ev_poll()
 
         switch(key)
         {
-            /*case SDL_SCANCODE_RALT:
-			case SDL_SCANCODE_LALT: ev.type = EV_PRESS; ev.code = K_ALT; ev_postevent(&ev); break; 
-            
-            
-            
-            
-			case SDL_SCANCODE_SPACE: ev.type = EV_PRESS; ev.code = K_SPACE; ev_postevent(&ev); break;  */
             case SDL_SCANCODE_RETURN: ev.type = EV_PRESS; ev.code = K_ENTER; ev_postevent(&ev); break;  
 			case SDL_SCANCODE_A: ev.type = EV_PRESS; ev.code = K_LEFT; ev_postevent(&ev); break; 
 			case SDL_SCANCODE_D: ev.type = EV_PRESS; ev.code = K_RIGHT; ev_postevent(&ev); break; 
 			case SDL_SCANCODE_S: ev.type = EV_PRESS; ev.code = K_DOWN; ev_postevent(&ev); break; 
 			case SDL_SCANCODE_W: ev.type = EV_PRESS; ev.code = K_UP; ev_postevent(&ev); break; 
-			case SDL_SCANCODE_Q: ev.type = EV_PRESS; ev.code = K_ALT; ev_postevent(&ev); break;
-			case SDL_SCANCODE_E: ev.type = EV_PRESS; ev.code = K_CTRL; ev_postevent(&ev); break;  
+			case SDL_SCANCODE_Q: ev.type = EV_PRESS; ev.code = 'q'; ev_postevent(&ev); break;
+			case SDL_SCANCODE_E: ev.type = EV_PRESS; ev.code = 'e'; ev_postevent(&ev); break;  
         }
 
     } else if (event.type == SDL_KEYUP){
@@ -121,20 +110,13 @@ void ev_poll()
         
         switch(key)
         {
-            /*case SDL_SCANCODE_RALT:
-			case SDL_SCANCODE_LALT: ev.type = EV_RELEASE; ev.code = K_ALT; ev_postevent(&ev); break; 
-            
-            case SDL_SCANCODE_A: ev.type = EV_RELEASE; ev.code = K_JOYLEFT; ev_postevent(&ev); break; 
-            case SDL_SCANCODE_S: ev.type = EV_RELEASE; ev.code = K_JOYDOWN; ev_postevent(&ev); break; 
-            
-			case SDL_SCANCODE_SPACE: ev.type = EV_RELEASE; ev.code = K_SPACE; ev_postevent(&ev); break; */
             case SDL_SCANCODE_RETURN: ev.type = EV_RELEASE; ev.code = K_ENTER; ev_postevent(&ev); break; 
 			case SDL_SCANCODE_A: ev.type = EV_RELEASE; ev.code = K_LEFT; ev_postevent(&ev); break; 
 			case SDL_SCANCODE_D: ev.type = EV_RELEASE; ev.code = K_RIGHT; ev_postevent(&ev); break;
 			case SDL_SCANCODE_S: ev.type = EV_RELEASE; ev.code = K_DOWN; ev_postevent(&ev); break;
 			case SDL_SCANCODE_W: ev.type = EV_RELEASE; ev.code = K_UP; ev_postevent(&ev); break;   
-			case SDL_SCANCODE_Q: ev.type = EV_RELEASE; ev.code = K_ALT; ev_postevent(&ev); break; 
-			case SDL_SCANCODE_E: ev.type = EV_RELEASE; ev.code = K_CTRL; ev_postevent(&ev); break;
+			case SDL_SCANCODE_Q: ev.type = EV_RELEASE; ev.code = 'q'; ev_postevent(&ev); break; 
+			case SDL_SCANCODE_E: ev.type = EV_RELEASE; ev.code = 'e'; ev_postevent(&ev); break;
         }
     }
 }

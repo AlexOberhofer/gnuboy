@@ -25,8 +25,8 @@ static char *defaultconfig[] =
 	"bind down +down",
 	"bind left +left",
 	"bind right +right",
-	"bind d +a",
-	"bind s +b",
+	"bind q +a",
+	"bind e +b",
 	"bind enter +start",
 	"bind space +select",
 	"bind tab +select",
@@ -65,6 +65,7 @@ static void copyright()
 	banner();
 	printf(
 "Copyright (C) 2000-2001 Laguna and Gilgamesh\n"
+"Copyright (C) 2020 Alex Oberhofer\n"
 "Portions contributed by other authors; see CREDITS for details.\n"
 "\n"
 "This program is free software; you can redistribute it and/or modify\n"
