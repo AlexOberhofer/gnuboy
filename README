@@ -1,6 +1,8 @@
 
 GNUBOY README
 
+Working on a multiplatform port of this after I decided my last gameboy port attempt was not suitable. This repository is forked from gnuboy
+and an sdl2 port is in progress. Use at your own risk.
 
   INTRO
 
