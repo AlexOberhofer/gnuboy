@@ -1,3 +1,7 @@
 *.o
 *gnuboy
+Makefile
+*.gb
+sdl2gnuboy
+*gnuboy
 config.*
