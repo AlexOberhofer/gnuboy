@@ -37,8 +37,8 @@ void vid_init()
 
 	if (!vmode[0] || !vmode[1])
 	{
-		vmode[0] = 160 * 2;
-		vmode[1] = 144 * 2;
+		vmode[0] = 160 * 1;
+		vmode[1] = 144 * 1;
 	}
 
 
