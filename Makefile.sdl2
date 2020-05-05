@@ -29,11 +29,11 @@ all: $(TARGETS)
 
 XZ_OBJS = xz/xz_crc32.o xz/xz_crc64.o xz/xz_dec_lzma2.o xz/xz_dec_stream.o xz/xz_dec_bcj.o
 
-OBJS = lcd.o refresh.o lcdc.o palette.o cpu.o mem.o rtc.o hw.o sound.o \
-	events.o keytable.o \
-	loader.o save.o debug.o emu.o main.o \
-	rccmds.o rckeys.o rcvars.o rcfile.o exports.o \
-	split.o path.o inflate.o $(XZ_OBJS)
+OBJS = ./src/lcd.o ./src/refresh.o ./src/lcdc.o ./src/palette.o ./src/cpu.o ./src/mem.o ./src/rtc.o ./src/hw.o ./src/sound.o \
+	./src/events.o ./src/keytable.o \
+	./src/loader.o ./src/save.o ./src/debug.o ./src/emu.o ./src/main.o \
+	./src/rccmds.o ./src/rckeys.o ./src/rcvars.o ./src/rcfile.o ./src/exports.o \
+	./src/split.o ./src/path.o ./src/inflate.o $(XZ_OBJS)
 
 INCS = -I.
 
