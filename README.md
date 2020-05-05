@@ -28,6 +28,8 @@ A working SDL2 build can be generated from the sdl2 makefile. A build of the 1.2
 
 - Add hardware accelerated to rendering
 
+- Add scaling to SDL2 port
+
 
 # Building
 
@@ -113,13 +115,11 @@ BACKSPACE - SELECT
 
 Alex Oberhofer
 
-### Cinoop
-
-CTurt - [Github](https://github.com/CTurt)
-
 ## Acknowledgements
 
 Cinoop Project 
+
+CTurt - [Github](https://github.com/CTurt)
 
 * [Github] (https://github.com/CTurt/Cinoop) 
 
@@ -128,3 +128,5 @@ Cinoop Project
 GNUBoy
 
 * Thank you to the original GNUBoy developers. Please see the history branch for their versions. Legacy documentation can be found in the docs folder.
+
+* [Website] (https://sourceforge.net/projects/gnuboy/)
