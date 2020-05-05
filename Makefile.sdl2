@@ -8,7 +8,7 @@ LD = $(CC)
 AS = $(CC)
 INSTALL = /usr/bin/install -c
 
-CFLAGS =  -ansi -pedantic -Wall -O3 -fstrength-reduce -fthread-jumps  -fcse-follow-jumps -fcse-skip-blocks -frerun-cse-after-loop  -fexpensive-optimizations -fforce-addr -fomit-frame-pointer
+CFLAGS =  -ansi -Wall -O3
 LDFLAGS = $(CFLAGS)  -s
 ASFLAGS = $(CFLAGS)
 
