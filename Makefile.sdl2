@@ -8,13 +8,13 @@ LD = $(CC)
 AS = $(CC)
 INSTALL = /usr/bin/install -c
 
-CFLAGS =  -ansi -Wall -O3
+CFLAGS =  -ansi -Wall -O3 -I./include
 LDFLAGS = $(CFLAGS)  -s
 ASFLAGS = $(CFLAGS)
 
 TARGETS =  sdl2gnuboy
 
-ASM_OBJS = 
+OBJS = src/*.o
 
 SYS_DEFS = -DHAVE_CONFIG_H -DIS_LITTLE_ENDIAN  -DIS_LINUX
 SYS_OBJS = sys/nix/nix.o $(ASM_OBJS)

@@ -21,8 +21,8 @@
 #include <unistd.h>
 #include <errno.h>
 
-#include "../../defs.h"
-#include "../../rc.h"
+#include "../../include/defs.h"
+#include "../../include/rc.h"
 
 #define DOTDIR ".gnuboy"
 
