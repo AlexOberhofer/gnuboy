@@ -14,10 +14,8 @@ ASFLAGS = $(CFLAGS)
 
 TARGETS =  sdl2gnuboy
 
-OBJS = src/*.o
-
 SYS_DEFS = -DHAVE_CONFIG_H -DIS_LITTLE_ENDIAN  -DIS_LINUX
-SYS_OBJS = sys/nix/nix.o $(ASM_OBJS)
+SYS_OBJS = sys/nix/nix.o
 SYS_INCS = -I/usr/local/include  -I./sys/nix
 
 SDL_OBJS = sys/sdl2/sdl.o sys/dummy/nosound.o
