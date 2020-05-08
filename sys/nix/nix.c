@@ -15,61 +15,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/time.h>
-#include <sys/stat.h>
-#include <sys/types.h>
 #include <unistd.h>
 #include <errno.h>
+
+#include <SDL2/SDL.h>
 
 #include "../../include/defs.h"
 #include "../../include/rc.h"
 
 #define DOTDIR ".gnuboy"
 
-#ifndef HAVE_USLEEP
-static void my_usleep(unsigned int us)
-{
-	struct timeval tv;
-	tv.tv_sec = 0;
-	tv.tv_usec = us;
-	select(0, NULL, NULL, NULL, &tv);
-}
-#endif
-
 void *sys_timer()
 {
-	struct timeval *tv;
+	Uint32 *tv;
 	
-	tv = malloc(sizeof(struct timeval));
-	gettimeofday(tv, NULL);
+	tv = malloc(sizeof *tv);
+	*tv = SDL_GetTicks() * 1000;
 	return tv;
 }
 
-int sys_elapsed(struct timeval *prev)
+int sys_elapsed(Uint32 *cl)
 {
-	struct timeval tv;
-	int secs, usecs;
-	
-	gettimeofday(&tv, NULL);
-	secs = tv.tv_sec - prev->tv_sec;
-	usecs = tv.tv_usec - prev->tv_usec;
-	*prev = tv;
-	if (!secs) return usecs;
-	return 1000000 + usecs;
+	Uint32 now;
+	Uint32 usecs;
+
+	now = SDL_GetTicks() * 1000;
+	usecs = now - *cl;
+	*cl = now;
+	return usecs;
 }
 
 void sys_sleep(int us)
 {
-	if (us <= 0) return;
-#ifdef HAVE_USLEEP
-	usleep(us);
-#else
-	my_usleep(us);
-#endif
+	SDL_Delay(us/1000);
 }
 
 void sys_checkdir(char *path, int wr)
 {
+	printf("Enter sys_checkdir()\n");
 	char *p;
 	if (access(path, X_OK | (wr ? W_OK : 0)))
 	{
@@ -83,10 +66,12 @@ void sys_checkdir(char *path, int wr)
 		if (mkdir(path, 0777))
 			die("cannot create %s: %s\n", path, strerror(errno));
 	}
+	printf("Exit sys_checkdir()\n");
 }
 
 void sys_initpath()
 {
+	printf("Enter sys_initpath()\n");
 	char *buf, *home = getenv("HOME");
 	if (!home)
 	{
@@ -101,6 +86,7 @@ void sys_initpath()
 	sprintf(buf, "%s/" DOTDIR "/saves" , home);
 	rc_setvar("savedir", 1, &buf);
 	free(buf);
+	printf("Exi sys_initpath()\n");
 }
 
 void sys_sanitize(char *s)
