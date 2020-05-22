@@ -53,8 +53,6 @@ void vid_init()
 		surface = SDL_GetWindowSurface(window);
     }
 
-	SDL_LockSurface(surface);
-
 	fb.w = surface->w;
 	fb.h = surface->h;
 	fb.pelsize = surface->format->BytesPerPixel;
@@ -67,8 +65,6 @@ void vid_init()
 	fb.cc[1].l = surface->format->Gshift;
 	fb.cc[2].r = surface->format->Bloss;
 	fb.cc[2].l = surface->format->Bshift;
-	
-	SDL_UnlockSurface(surface);
 
 	fb.enabled = 1;
 	fb.dirty = 0;
@@ -152,13 +148,10 @@ void vid_begin()
 
 void vid_end()
 {
-
-	SDL_UnlockSurface(surface);
-	/*SDL_RenderClear(renderer);
+	SDL_RenderClear(renderer);
+	texture = SDL_CreateTextureFromSurface(renderer, surface);
 	SDL_RenderCopy(renderer, texture, NULL, NULL);
-	SDL_RenderPresent(renderer);*/
-	SDL_UpdateWindowSurface(window);
-	
+	SDL_RenderPresent(renderer);	
 }
 
 

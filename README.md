@@ -2,7 +2,7 @@
 
 # Overview 
 
-My personal fork for experimentation. Based on GNUBoy and licensed under GPLv2
+My personal fork for experimentation. Based on GNUBoy and licensed under GNU GPLv2
 
 # Screenshots
 
@@ -20,7 +20,7 @@ My personal fork for experimentation. Based on GNUBoy and licensed under GPLv2
 
 # Status
 
-A working SDL2 build can be generated from the sdl2 makefile. A build of the 1.2 sdl port will likely come back as well.
+A working SDL2 build can be generated from the sdl2 makefile. 
 
 ## Whats been done
 
@@ -35,7 +35,7 @@ A working SDL2 build can be generated from the sdl2 makefile. A build of the 1.2
 
 - Porting: The codebase is currently buildable on Windows/MacOS/*nix. I have built the SDL2 version of the codebase on each of those platforms, but I have not yet provided build scripts or releases for multiplatform. The SDL2 version only currently works on linux.
 
-- Add hardware accelerated to rendering
+- Add hardware acceleration to rendering (textures vs surfaces)
 
 - Add scaling to SDL2 port
 
