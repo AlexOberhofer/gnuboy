@@ -28,16 +28,14 @@ A working SDL2 build can be generated from the sdl2 makefile.
 
 - SDL2 control implementation (currently not rebindable)
 
-- SDL1.2 rendering ported to SDL2
+- SDL1.2 rendering ported to SDL2 (Now uses gpu if possible and supports scaling)
+
+- SDL1.2 sound ported to SDL2 (Needs a bit of work but its functional)
 
 
 ## Todo
 
 - Porting: The codebase is currently buildable on Windows/MacOS/*nix. I have built the SDL2 version of the codebase on each of those platforms, but I have not yet provided build scripts or releases for multiplatform. The SDL2 version only currently works on linux.
-
-- Add hardware acceleration to rendering (textures vs surfaces)
-
-- Add scaling to SDL2 port
 
 
 # Building

@@ -3,7 +3,7 @@
  * sdl 2 audio interface
  *
  * (C) 2001 Laguna
-* (C) 2020 Alex Oberhofer <alexmoberhofer@gmail.com>
+ * (C) 2020 Alex Oberhofer <alexmoberhofer@gmail.com>
  *
  * Licensed under the GPLv2, or later.
  */
