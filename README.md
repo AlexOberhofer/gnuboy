@@ -20,11 +20,11 @@ My personal fork for experimentation. Based on GNUBoy and licensed under GNU GPL
 
 # Status
 
-A working SDL2 build can be generated from the sdl2 makefile. 
+A working SDL2 build can be generated from the provided makefile. This is the build file I use for linux
 
 ## Whats been done
 
-- Builds on linux
+- Builds and Runs on linux (Tested and developed on Manjaro)
 
 - SDL2 control implementation (currently not rebindable)
 
@@ -42,6 +42,12 @@ A working SDL2 build can be generated from the sdl2 makefile.
 
 This project requires GCC and SDL2 to build for linux. A Makefile has been provided.
 
+Install SDL2 development libraries (Ubuntu):
+
+```
+$ apt-get install libsdl2-dev
+```
+
 Clone github repository: 
 
 ```
@@ -57,7 +63,7 @@ $ cd gnuboy
 Build:
 
 ```
-$ make -f Makefile.sdl2
+$ make 
 ```
 
 Run:
