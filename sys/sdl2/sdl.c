@@ -29,16 +29,22 @@ struct fb fb;
 
 static int vmode[3] = { 0, 0, 16 };
 
+static byte pix[160 * 144 * 4];
+
 /* keymap - mappings of the form { scancode, localcode } - from sdl/keymap.c */
 extern int keymap[][2];
 
 void vid_init()
 {
+	int g_scale = 0;
 
 	if (!vmode[0] || !vmode[1])
 	{
-		vmode[0] = 160 * 1;
-		vmode[1] = 144 * 1;
+		int scale = rc_getint("scale");
+		if (scale < 1) scale = 1;
+		g_scale = scale;
+		vmode[0] = 160;
+		vmode[1] = 144;
 	}
 
 
@@ -46,25 +52,23 @@ void vid_init()
         printf("SDL_Init failed: %s\n", SDL_GetError());
         exit(1);
     } else {
-        window = SDL_CreateWindow("GNUBoy SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, vmode[0], vmode[1], NULL);
+        window = SDL_CreateWindow("GNUBoy SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, vmode[0] * g_scale, vmode[1] * g_scale, NULL);
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
         SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
-        texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGB24, SDL_TEXTUREACCESS_STREAMING, vmode[0], vmode[1]);
-		surface = SDL_GetWindowSurface(window);
+        texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, vmode[0], vmode[1]);
     }
 
-	fb.w = surface->w;
-	fb.h = surface->h;
-	fb.pelsize = surface->format->BytesPerPixel;
-	fb.pitch = surface->pitch;
+	fb.w = vmode[0];
+	fb.h = vmode[1];
+	fb.pelsize = 4;
+	fb.pitch = fb.w * fb.pelsize;
 	fb.indexed = fb.pelsize == 1;
-	fb.ptr = surface->pixels;
-	fb.cc[0].r = surface->format->Rloss;
-	fb.cc[0].l = surface->format->Rshift;
-	fb.cc[1].r = surface->format->Gloss;
-	fb.cc[1].l = surface->format->Gshift;
-	fb.cc[2].r = surface->format->Bloss;
-	fb.cc[2].l = surface->format->Bshift;
+	fb.ptr = pix;
+	fb.cc[0].r = fb.cc[1].r = fb.cc[2].r = fb.cc[3].r = 0;
+	fb.cc[0].l = 16;
+	fb.cc[1].l = 8;
+	fb.cc[2].l = 0;
+	fb.cc[3].l = 0;
 
 	fb.enabled = 1;
 	fb.dirty = 0;
@@ -131,7 +135,6 @@ void vid_preinit()
 void vid_close()
 {
 	SDL_DestroyWindow(window);
-	SDL_UnlockSurface(surface);
 	SDL_Quit();
 }
 
@@ -142,14 +145,14 @@ void vid_settitle(char *title)
 
 void vid_begin()
 {
-		SDL_LockSurface(surface);
-		fb.ptr = surface->pixels;
+	fb.ptr = pix;
 }
 
 void vid_end()
 {
+	fb.ptr = pix;
 	SDL_RenderClear(renderer);
-	texture = SDL_CreateTextureFromSurface(renderer, surface);
+	SDL_UpdateTexture(texture, NULL, pix, vmode[0] * 4);
 	SDL_RenderCopy(renderer, texture, NULL, NULL);
 	SDL_RenderPresent(renderer);	
 }
