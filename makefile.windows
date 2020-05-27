@@ -3,7 +3,7 @@ prefix = /usr/local
 exec_prefix = ${prefix}
 bindir = ${exec_prefix}/bin
 
-CC = gcc
+CC = x86_64-w64-mingw32-gcc
 LD = $(CC)
 AS = $(CC)
 INSTALL = /usr/bin/install -c
@@ -12,15 +12,15 @@ CFLAGS =  -Wall -O3 -I./include
 LDFLAGS = $(CFLAGS)  -s
 ASFLAGS = $(CFLAGS)
 
-TARGETS =  sdl2gnuboy
+TARGETS =  sdl2gnuboy.exe
 
-SYS_DEFS = -DIS_LITTLE_ENDIAN  -DIS_LINUX
-SYS_OBJS = sys/nix/nix.o
-SYS_INCS = -I/usr/local/include  -I./sys/nix
+SYS_DEFS = -DIS_LITTLE_ENDIAN  -DALT_PATH_SEPs
+SYS_OBJS = sys/windows/windows.o
+SYS_INCS = -I/usr/local/include  -I./sys/windows
 
 SDL_OBJS = sys/sdl2/sdl.o sys/sdl2/sdl-audio.o
 SDL_LIBS = -L/usr/lib -lSDL2 -lpthread
-SDL_CFLAGS = -I/usr/include/SDL2 -D_GNU_SOURCE=1 -D_REENTRANT
+SDL_CFLAGS = -I/usr/include/SDL2 
 
 
 all: $(TARGETS)
@@ -46,7 +46,7 @@ main.o: Version
 .s.o:
 	$(MYAS) -c $< -o $@
 
-sdl2gnuboy: $(OBJS) $(SYS_OBJS) $(SDL_OBJS)
+sdl2gnuboy.exe: $(OBJS) $(SYS_OBJS) $(SDL_OBJS)
 	$(LD) $(LDFLAGS) $(OBJS) $(SYS_OBJS) $(SDL_OBJS) -o $@ $(SDL_LIBS)
 
 sys/sdl2/sdl.o: sys/sdl2/sdl.c
@@ -58,7 +58,7 @@ install: all
 	$(INSTALL) -m 755 $(TARGETS) $(bindir)
 
 clean:
-	rm -f *gnuboy gnuboy.exe gmon.out *.o sys/*.o sys/*/*.o asm/*/*.o $(OBJS)
+	rm -f *gnuboy gmon.out *.o sys/*.o sys/*/*.o asm/*/*.o $(OBJS)
 
 distclean: clean
 	rm -f config.* sys/nix/config.h Makefile

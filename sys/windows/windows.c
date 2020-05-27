@@ -1,8 +1,9 @@
 /*
  * MinGW32 system file
  * based on nix.c and dos.c
- * req's SDL
+ * req's SDL 2
  * -Dave Kiddell
+ * -Alex Oberhofer
  */
 
 #include <stdlib.h>
@@ -10,7 +11,7 @@
 #include <string.h>
 char *strdup();
 
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 
 void *sys_timer()
 {
