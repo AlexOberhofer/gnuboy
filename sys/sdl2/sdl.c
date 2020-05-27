@@ -36,13 +36,13 @@ extern int keymap[][2];
 
 void vid_init()
 {
-	int g_scale = 0;
+	int window_scale = 0;
 
 	if (!vmode[0] || !vmode[1])
 	{
 		int scale = rc_getint("scale");
 		if (scale < 1) scale = 1;
-		g_scale = scale;
+		window_scale = scale;
 		vmode[0] = 160;
 		vmode[1] = 144;
 	}
@@ -52,7 +52,7 @@ void vid_init()
         printf("SDL_Init failed: %s\n", SDL_GetError());
         exit(1);
     } else {
-        window = SDL_CreateWindow("GNUBoy SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, vmode[0] * g_scale, vmode[1] * g_scale, NULL);
+        window = SDL_CreateWindow("SDL2 GNUBoy", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, vmode[0] * window_scale, vmode[1] * window_scale, NULL);
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
         SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
         texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, vmode[0], vmode[1]);

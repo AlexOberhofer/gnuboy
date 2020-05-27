@@ -50,7 +50,7 @@ static char *defaultconfig[] =
 	"bind 0 \"set saveslot 0\"",
 	"bind ins savestate",
 	"bind del loadstate",
-	"set scale 1",
+	"set scale 2",
 	"source gnuboy.rc",
 	NULL
 };
