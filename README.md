@@ -4,6 +4,8 @@
 
 My personal fork for experimentation. Based on GNUBoy and licensed under GNU GPLv2
 
+SDL2 port now working on Linux (Tested on Ubuntu and Manjaro... and Windows Linux Subsystem - though there are timing issues with SDL2)
+
 # Screenshots
 
 <div align="center">
@@ -17,6 +19,47 @@ My personal fork for experimentation. Based on GNUBoy and licensed under GNU GPL
 |<img alt="Zelda" src="https://github.com/AlexOberhofer/gnuboy/raw/refactor/docs/zelda.PNG"> |<img alt="Super Mario Deluxe" src="https://github.com/AlexOberhofer/gnuboy/raw/refactor/docs/supermariodeluxe.PNG"> |
 
 </div>
+
+# Performance
+
+The original core of GNUBoy is mainly unmodified except for a number of bugfixes I have ported into this fork. 
+
+## SDL2GNUBoy v1.0 Metrics
+
+Here are a few demos running game intro loops and a unix process monitor (htop):
+
+*Note:* Captures are from a Manjaro VM running on VMWare on Windows 10 <br>
+<center> <h4>Classic Gameboy: Pokemon Red</h4><br>
+<img alt="Zelda" src="https://github.com/AlexOberhofer/gnuboy/raw/master/docs/red.gif"></center><br>
+<center> <h4>Gameboy Color: Pokemon Crystal</h4><br>
+<img alt="Zelda" src="https://github.com/AlexOberhofer/gnuboy/raw/master/docs/crystal.gif"></center><br>
+
+
+
+## Legacy Metrics
+
+Pre - fork GNUBoy performance metrics:
+
+*Note*: The ASM code has now been removed from this repository
+
+```
+  PERFORMANCE
+
+Here are some performance estimates i've gathered (given in percent
+cpu utilization, running at full 60 fps)...
+
+                                 Optimized C        Assembly
+  AMD K6-2/450                       12%               8%
+  Pentium/75                     (too slow)           70%
+  SGI O2                             25%            (no asm)
+  SGI Indy                           70%            (no asm)
+  Sun Ultra60                       3-20%           (no asm)
+  IBM S/390                      about 0.3%         (no asm)
+
+Note that these figures were computed before sound was implemented.
+Until the sound code is further optimized, gnuboy may run somewhat
+slower than these numbers suggest.
+```
 
 # Status
 
