@@ -36,15 +36,11 @@ OBJS = ./src/lcd.o ./src/refresh.o ./src/lcdc.o ./src/palette.o ./src/cpu.o ./sr
 INCS = -I.
 
 MYCC = $(CC) $(CFLAGS) $(INCS) $(SYS_INCS) $(SYS_DEFS)
-MYAS = $(AS) $(ASFLAGS) $(INCS) $(SYS_INCS) $(SYS_DEFS)
 
 main.o: Version
 
 .c.o:
 	$(MYCC) -c $< -o $@
-
-.s.o:
-	$(MYAS) -c $< -o $@
 
 %.o: %.rc
 	x86_64-w64-mingw32-windres -o $@ $<
@@ -61,7 +57,7 @@ install: all
 	$(INSTALL) -m 755 $(TARGETS) $(bindir)
 
 clean:
-	rm -f *gnuboy gmon.out *.o sys/*.o sys/*/*.o asm/*/*.o $(OBJS)
+	rm -f *gnuboy *.exe gmon.out *.o sys/*.o sys/*/*.o asm/*/*.o $(OBJS)
 
 distclean: clean
 	rm -f config.* sys/nix/config.h Makefile
