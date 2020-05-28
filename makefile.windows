@@ -8,13 +8,13 @@ LD = $(CC)
 AS = $(CC)
 INSTALL = /usr/bin/install -c
 
-CFLAGS =  -Wall -O3 -I./include
+CFLAGS =  -Wall -O3 -mwindows -I./include
 LDFLAGS = $(CFLAGS)  -s
 ASFLAGS = $(CFLAGS)
 
 TARGETS =  sdl2gnuboy.exe
 
-SYS_DEFS = -DIS_LITTLE_ENDIAN  -DALT_PATH_SEPs
+SYS_DEFS = -DIS_LITTLE_ENDIAN  -DALT_PATH_SEP
 SYS_OBJS = sys/windows/windows.o
 SYS_INCS = -I/usr/local/include  -I./sys/windows
 

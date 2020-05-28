@@ -6,3 +6,5 @@ sdl2gnuboy
 *gnuboy
 config.*
 *.gbc
+*.exe
+*.dll
