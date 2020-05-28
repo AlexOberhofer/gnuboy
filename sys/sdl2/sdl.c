@@ -31,9 +31,6 @@ static int vmode[3] = { 0, 0, 16 };
 
 static byte pix[160 * 144 * 4];
 
-/* keymap - mappings of the form { scancode, localcode } - from sdl/keymap.c */
-extern int keymap[][2];
-
 void vid_init()
 {
 	int window_scale = 0;
@@ -135,6 +132,7 @@ void vid_preinit()
 void vid_close()
 {
 	SDL_DestroyWindow(window);
+	SDL_DestroyTexture(texture);
 	SDL_Quit();
 }
 
