@@ -44,7 +44,7 @@ A number of cpu buxfixes were ported from [here](https://github.com/mattkj/super
 
 The emulator currently fails only one CPU instruction via blarggs test rom (Windows executable running in wine on Linux):
 
-(Coming Soon)
+<img align="center" src="https://github.com/AlexOberhofer/gnuboy/raw/master/docs/blargg.PNG">
 
 ## SDL2GNUBoy v1.1.0 Metrics
 
@@ -209,7 +209,7 @@ $ wine ./sdl2gnuboy.exe ./rom
 Run (cmd):
 
 ```
-$ wine ./sdl2gnuboy.exe ./rom
+$ ./sdl2gnuboy.exe ./rom
 ```
 
 # Controls
