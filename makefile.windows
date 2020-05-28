@@ -15,7 +15,7 @@ ASFLAGS = $(CFLAGS)
 TARGETS =  sdl2gnuboy.exe
 
 SYS_DEFS = -DIS_LITTLE_ENDIAN  -DALT_PATH_SEP
-SYS_OBJS = sys/windows/windows.o
+SYS_OBJS = sys/windows/windows.o sys/windows/resource.o
 SYS_INCS = -I/usr/local/include  -I./sys/windows
 
 SDL_OBJS = sys/sdl2/sdl.o sys/sdl2/sdl-audio.o
@@ -45,6 +45,9 @@ main.o: Version
 
 .s.o:
 	$(MYAS) -c $< -o $@
+
+%.o: %.rc
+	x86_64-w64-mingw32-windres -o $@ $<
 
 sdl2gnuboy.exe: $(OBJS) $(SYS_OBJS) $(SDL_OBJS)
 	$(LD) $(LDFLAGS) $(OBJS) $(SYS_OBJS) $(SDL_OBJS) -o $@ $(SDL_LIBS)
