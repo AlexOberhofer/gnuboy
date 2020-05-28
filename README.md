@@ -2,9 +2,23 @@
 
 # Overview 
 
+A Multiplatform Gameboy Emulator. Free Software.
+
 My personal fork for experimentation. Based on GNUBoy and licensed under GNU GPLv2
 
-SDL2 port now working on Linux (Tested on Ubuntu and Manjaro... and Windows Linux Subsystem - though there are timing issues with SDL2)
+SDL2 port now working on Linux and Windows
+
+# Releases
+
+Download: (https://github.com/AlexOberhofer/sdl2gnuboy/releases)
+
+SDL2 GNUboy pre-compiled binaries will be provided with each release. The source is also provided on the release page and the binaries can be built from the source or from this repository.
+
+v1.1.0 (Coming soon)
+ - Added Windows cross compilation
+
+v1.0
+ - Supports Linux only
 
 # Screenshots
 
@@ -23,6 +37,18 @@ SDL2 port now working on Linux (Tested on Ubuntu and Manjaro... and Windows Linu
 # Performance
 
 The original core of GNUBoy is mainly unmodified except for a number of bugfixes I have ported into this fork. 
+
+## Accuracy
+
+A number of cpu buxfixes were ported from [here](https://github.com/mattkj/super-go-play/tree/master/gnuboy-go/components/gnuboy)
+
+The emulator currently fails only one CPU instruction via blarggs test rom (Windows executable running in wine on Linux):
+
+(Coming Soon)
+
+## SDL2GNUBoy v1.1.0 Metrics
+
+Coming Soon (Windows)
 
 ## SDL2GNUBoy v1.0 Metrics
 
@@ -67,7 +93,9 @@ A working SDL2 build can be generated from the provided makefile. This is the bu
 
 ## Whats been done
 
-- Builds and Runs on linux (Tested and developed on Manjaro)
+- Builds and Runs on Linux (Tested and developed on Manjaro)
+
+- Cross compiles on Linux into a Windows executable
 
 - SDL2 control implementation (currently not rebindable)
 
@@ -80,8 +108,20 @@ A working SDL2 build can be generated from the provided makefile. This is the bu
 
 - Porting: The codebase is currently buildable on Windows/MacOS/*nix. I have built the SDL2 version of the codebase on each of those platforms, but I have not yet provided build scripts or releases for multiplatform. The SDL2 version only currently works on linux.
 
+- Joystick / Controller Support
+
+- SDL Sound rewrite
+
+- SDL Keys rewrite (To support key rebinding)
+
 
 # Building
+
+Build scripts are provided for both native unix applications and for cross compiling via mingw-w64 gcc
+
+Build instructions are provided for both below:
+
+## Linux 
 
 This project requires GCC and SDL2 to build for linux. A Makefile has been provided.
 
@@ -115,6 +155,62 @@ Run:
 $ ./sdl2gnuboy ./rom
 ```
 
+## Windows (Cross Compiler)
+
+SDL2 GNUboy can be cross compiled for Windows on Linux (or the Windows Linux Subsystem)
+
+This requires mingw64-w64-gcc and the mingw SDL2 libraries. 
+
+These can be installed via the AUR or the SDL website (Extract and place contents in /usr/x86_64-w64-mingw32)
+
+
+Install libraries (from AUR using yay)
+
+```
+$ yay mingw-w64-gcc
+```
+
+Install MinGW-w64-sdl2
+
+```
+$ yay mingw-w64-sdl2
+```
+
+Clone github repository: 
+
+```
+$ git clone https://github.com/AlexOberhofer/gnuboy.git
+```
+
+Enter project directory:
+
+```
+$ cd gnuboy
+```
+
+Build:
+
+```
+$ make -f makefile.windows
+```
+
+Run  
+
+Windows: 
+
+  - Drag and drop rom over executable
+
+(Wine):
+
+```
+$ wine ./sdl2gnuboy.exe ./rom
+```
+
+Run (cmd):
+
+```
+$ wine ./sdl2gnuboy.exe ./rom
+```
 
 # Controls
 
