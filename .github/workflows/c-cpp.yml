@@ -13,9 +13,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: install libs
+    - name: update
       run: 
         sudo apt-get update
+    - name: install sdl2
+      run:
         sudo apt-get install libsdl2-dev
     - name: make
       run: make
