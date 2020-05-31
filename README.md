@@ -11,9 +11,16 @@ My personal fork for experimentation. Based on GNUBoy and licensed under GNU GPL
 
 SDL2 port now working on Linux and Windows
 
+The scripts in the root directory are used by github actions workflow for building this repository. Read the code before you execute it...
+
 # Releases
 
-Download: (https://github.com/AlexOberhofer/sdl2gnuboy/releases)
+The latest packaged releases are available under the associated workflow. This currently is only for Windows. If you use Linux/MacOS BUILD IT!!!!
+
+Download Versioned Releases: (https://github.com/AlexOberhofer/sdl2gnuboy/releases)
+
+Builds: (https://github.com/AlexOberhofer/sdl2gnuboy/actions)
+*Note* Builds only provided for windows via mingw64 for each commit
 
 SDL2 GNUboy pre-compiled binaries will be provided with each release. The source is also provided on the release page and the binaries can be built from the source or from this repository.
 
