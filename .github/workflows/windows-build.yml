@@ -21,6 +21,8 @@ jobs:
       run: ./sdl2-setup.sh
     - name: Build Windows exe
       run: make -f makefile.windows
+    - name: Package Windows
+      run: ./package.sh
     - uses: actions/upload-artifact@v2
       with:
         name: SDL2GNUBoy Windows
