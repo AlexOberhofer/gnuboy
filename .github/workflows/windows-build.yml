@@ -25,6 +25,6 @@ jobs:
       run: ./package.sh
     - uses: actions/upload-artifact@v2
       with:
-        name: SDL2GNUBoy Windows
-        path: ./sdl2gnuboy.exe
+        name: SDL2GNUBoy latest for Windows
+        path: ./windows-latest.zip
       
