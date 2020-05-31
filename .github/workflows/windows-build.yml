@@ -18,6 +18,6 @@ jobs:
     - name: toolchain setup
       run: sudo apt-get install mingw-w64
     - name: sdl setup script
-      run: ./sdl2-setup
+      run: ./sdl2-setup.sh
     - name: Build Windows exe
       run: make -f makefile.windows
