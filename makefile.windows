@@ -15,7 +15,8 @@ ASFLAGS = $(CFLAGS)
 TARGETS =  sdl2gnuboy.exe
 
 SYS_DEFS = -DIS_LITTLE_ENDIAN  -DALT_PATH_SEP
-SYS_OBJS = sys/windows/windows.o
+
+SYS_OBJS = sys/windows/windows.o sys/windows/resource.o
 SYS_INCS = -I/usr/local/include  -I./sys/windows -I./lib/sdl2-mingw64/SDL2-2.0.12/x86_64-w64-mingw32/include 
 
 SDL_OBJS = sys/sdl2/sdl.o sys/sdl2/sdl-audio.o
@@ -36,15 +37,14 @@ OBJS = ./src/lcd.o ./src/refresh.o ./src/lcdc.o ./src/palette.o ./src/cpu.o ./sr
 INCS = -I.
 
 MYCC = $(CC) $(CFLAGS) $(INCS) $(SYS_INCS) $(SYS_DEFS)
-MYAS = $(AS) $(ASFLAGS) $(INCS) $(SYS_INCS) $(SYS_DEFS)
 
 main.o: Version
 
 .c.o:
 	$(MYCC) -c $< -o $@
 
-.s.o:
-	$(MYAS) -c $< -o $@
+%.o: %.rc
+	x86_64-w64-mingw32-windres -o $@ $<
 
 sdl2gnuboy.exe: $(OBJS) $(SYS_OBJS) $(SDL_OBJS)
 	$(LD) $(LDFLAGS) $(OBJS) $(SYS_OBJS) $(SDL_OBJS) -o $@ $(SDL_LIBS)
@@ -58,7 +58,7 @@ install: all
 	$(INSTALL) -m 755 $(TARGETS) $(bindir)
 
 clean:
-	rm -f *gnuboy gmon.out *.o sys/*.o sys/*/*.o asm/*/*.o $(OBJS)
+	rm -f *gnuboy *.exe gmon.out *.o sys/*.o sys/*/*.o asm/*/*.o $(OBJS)
 
 distclean: clean
 	rm -f config.* sys/nix/config.h Makefile
