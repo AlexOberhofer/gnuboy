@@ -16,9 +16,10 @@ unzip SDL2-2.0.12-win32-x64.zip
 
 rm SDL2-2.0.12-win32-x64.zip 
 
+zip  windows.zip *.*
+
+mv windows.zip ../
+
 cd ..
 
-zip -r windows-latest.zip windows/
-
 rm -rf windows
-
