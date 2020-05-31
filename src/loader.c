@@ -17,7 +17,7 @@
 #include "rc.h"
 #include "lcd.h"
 #include "inflate.h"
-#include "xz/xz.h"
+#include "lib/xz/xz.h"
 #include "save.h"
 #include "sound.h"
 #include "sys.h"

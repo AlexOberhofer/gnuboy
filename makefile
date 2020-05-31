@@ -25,7 +25,7 @@ SDL_CFLAGS = -I/usr/include/SDL2 -D_GNU_SOURCE=1 -D_REENTRANT
 
 all: $(TARGETS)
 
-XZ_OBJS = xz/xz_crc32.o xz/xz_crc64.o xz/xz_dec_lzma2.o xz/xz_dec_stream.o xz/xz_dec_bcj.o
+XZ_OBJS = lib/xz/xz_crc32.o lib/xz/xz_crc64.o lib/xz/xz_dec_lzma2.o lib/xz/xz_dec_stream.o lib/xz/xz_dec_bcj.o
 
 OBJS = ./src/lcd.o ./src/refresh.o ./src/lcdc.o ./src/palette.o ./src/cpu.o ./src/mem.o ./src/rtc.o ./src/hw.o ./src/sound.o \
 	./src/events.o ./src/keytable.o \
