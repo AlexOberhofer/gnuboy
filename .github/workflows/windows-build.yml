@@ -21,3 +21,7 @@ jobs:
       run: ./sdl2-setup.sh
     - name: Build Windows exe
       run: make -f makefile.windows
+    - uses: actions/upload-artifact@v2
+    - name: SDL2GNUBoy Windows
+      path: ./sdl2gnuboy.exe
+      
