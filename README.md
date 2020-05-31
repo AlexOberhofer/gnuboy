@@ -2,6 +2,9 @@
 
 # Overview 
 
+![GNU/Linux](https://github.com/AlexOberhofer/sdl2gnuboy/workflows/GNU/Linux/badge.svg)
+
+
 A Multiplatform Gameboy Emulator. Free Software.
 
 My personal fork for experimentation. Based on GNUBoy and licensed under GNU GPLv2

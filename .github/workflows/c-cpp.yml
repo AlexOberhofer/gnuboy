@@ -1,4 +1,4 @@
-name: SDL2 GNUBoy
+name: GNU/Linux
 
 on:
   push:
