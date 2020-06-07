@@ -1,5 +1,9 @@
 # GNUBoy SDL2 Port
 
+As my repository has diverted quite a bit from the original code base - I have moved development of this project into a new repository. Please feel free to do whatever with this code (within the terms of the GPL). Feel free to fork it or check out the latest SDL2GNUBoy development below.
+
+New Repository: https://github.com/AlexOberhofer/SDL2-GNUBoy
+
 # Overview 
 
 ![GNU/Linux](https://github.com/AlexOberhofer/sdl2gnuboy/workflows/GNU/Linux/badge.svg)
